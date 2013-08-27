@@ -24,11 +24,11 @@ abstract class VelvetOpts(
       Seq("git", "clone", "git://github.com/dzerbino/velvet.git")
     , (Seq("make", "-W", "doc", "-W", "Manual.pdf" // no docs, please
         // setting up make parameters:
-        , "'CATEGORIES="+categories+"'"
-        , "'MAXKMERLENGTH="+maxKmerLength+"'"
-        ) ++ ( if (bigAssembly)   Seq("'BIGASSEMBLY=1'") else Seq() ) 
-          ++ ( if (longSequences) Seq("'LONGSEQUENCES=1'") else Seq() )
-          ++ ( if (openMP)        Seq("'OPENMP=1'") else Seq() )
+        , "CATEGORIES="+categories+""
+        , "MAXKMERLENGTH="+maxKmerLength+""
+        ) ++ ( if (bigAssembly)   Seq("BIGASSEMBLY=1") else Seq() ) 
+          ++ ( if (longSequences) Seq("LONGSEQUENCES=1") else Seq() )
+          ++ ( if (openMP)        Seq("OPENMP=1") else Seq() )
       ) @@ "velvet"
     , Seq("cp", "velvetg", "velveth", "/usr/bin/") @@ "velvet"
     ).
