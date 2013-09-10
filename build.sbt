@@ -4,12 +4,21 @@ description := "A bundle for velvet tool"
 
 homepage := Some(url("https://github.com/ohnosequences/velvet"))
 
+organization := "ohnosequences"
+
+organizationHomepage := Some(url("http://ohnosequences.com"))
+
 licenses := Seq("AGPLv3" -> url("http://www.gnu.org/licenses/agpl-3.0.txt"))
 
 bundleObjects := Seq("ohnosequences.statika.Velvet")
 
 libraryDependencies ++= Seq( 
-  "ohnosequences" %% "git" % "0.6.0"
-, "ohnosequences" %% "gcc" % "0.1.0"
-, "ohnosequences" %% "zlib-devel" % "0.1.0"
+  "ohnosequences" %% "git" % "0.7.0-SNAPSHOT"
+, "ohnosequences" %% "gcc" % "0.2.0-SNAPSHOT"
+, "ohnosequences" %% "zlib-devel" % "0.2.0-SNAPSHOT"
 ) 
+
+
+statikaVersion := "0.15.0-SNAPSHOT"
+
+awsStatikaVersion := "0.2.0-SNAPSHOT"
