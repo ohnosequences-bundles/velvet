@@ -16,7 +16,7 @@ abstract class VelvetOpts(
 
     def velvet = new java.io.File("velvet")
 
-     (  Git.clone(new java.net.URL("git://github.com/dzerbino/velvet.git"))
+     (  Git.clone("git://github.com/dzerbino/velvet.git")
     -&- (Seq("make", "-W", "doc", "-W", "Manual.pdf" // no docs, please
           // setting up make parameters:
           , "CATEGORIES="+categories+""
