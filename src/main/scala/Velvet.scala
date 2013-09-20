@@ -14,7 +14,7 @@ abstract class VelvetOpts(
 
   def install[D <: AnyDistribution](distribution: D): InstallResults = {
 
-    def velvet = new java.io.File("velvet")
+    val velvet = new java.io.File("velvet")
 
      (  Git.clone("git://github.com/dzerbino/velvet.git")
     -&- (Seq("make", "-W", "doc", "-W", "Manual.pdf" // no docs, please
