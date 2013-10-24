@@ -3,6 +3,9 @@ package ohnosequences.statika
 import ohnosequences.statika._
 import sys.process._
 
+case object GCC extends YumBundle("gcc")
+case object ZlibDevel extends YumBundle("zlib-devel")
+
 abstract class VelvetOpts(
     categories: Int = 2
   , maxKmerLength: Int = 31
@@ -10,7 +13,7 @@ abstract class VelvetOpts(
   , longSequences: Boolean = false
   , openMP: Boolean = false
   ) 
-  extends Bundle(Git :: GCC :: ZlibDevel :: HNil) {
+  extends Bundle(Git :+: GCC :+: ZlibDevel) {
 
   def install[D <: AnyDistribution](distribution: D): InstallResults = {
 
@@ -26,13 +29,11 @@ abstract class VelvetOpts(
             ++ ( if (openMP)        Seq("OPENMP=1") else Seq() )
         ) @@ velvet
     -&- Seq("cp", "velvetg", "velveth", "/usr/bin/") @@ velvet
-    ->- success(metadata+" is installed")
+    ->- success(name + " is installed")
      )
   }
 
 }
 
 // bundle with default parameters
-case object Velvet extends VelvetOpts {
-  val metadata = generated.metadata.Velvet
-}
+case object Velvet extends VelvetOpts
