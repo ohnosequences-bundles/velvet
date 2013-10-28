@@ -10,4 +10,4 @@ organizationHomepage := Some(url("http://ohnosequences.com"))
 
 licenses := Seq("AGPLv3" -> url("http://www.gnu.org/licenses/agpl-3.0.txt"))
 
-libraryDependencies += "ohnosequences" %% "yum" % "0.1.0-SNAPSHOT"
+libraryDependencies += "ohnosequences" %% "yum" % "0.1.0"
