@@ -1,11 +1,13 @@
-package ohnosequences.statika
+package ohnosequences.statika.bundles
 
 import ohnosequences.statika._
 import sys.process._
 
 case object GCC extends YumBundle("gcc")
+
 case object ZlibDevel extends YumBundle("zlib-devel")
 
+// Abstract bundle, which compiles velvet with given paraeters
 abstract class VelvetOpts(
     categories: Int = 2
   , maxKmerLength: Int = 31
@@ -13,9 +15,9 @@ abstract class VelvetOpts(
   , longSequences: Boolean = false
   , openMP: Boolean = false
   ) 
-  extends Bundle(Git :+: GCC :+: ZlibDevel) {
+  extends Bundle(GCC :~: ZlibDevel :~: Git) {
 
-  def install[D <: AnyDistribution](distribution: D): InstallResults = {
+  override def install[D <: AnyDistribution](distribution: D): InstallResults = {
 
     val velvet = new java.io.File("velvet")
 
