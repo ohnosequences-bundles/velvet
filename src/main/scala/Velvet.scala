@@ -1,6 +1,5 @@
 package ohnosequences.statika
 
-import ohnosequences.cosas.typeSets._
 import ohnosequences.statika._, bundles._, instructions._
 
 // Abstract bundle, which compiles velvet with given paraeters
@@ -10,7 +9,7 @@ abstract class AbstractVelvet(
   bigAssembly: Boolean,
   longSequences: Boolean,
   openMP: Boolean
-) extends Bundle(∅) {
+) extends Bundle() {
 
   def yum(names: String*): Results = Seq("yum", "install", "-y") ++ names
 
