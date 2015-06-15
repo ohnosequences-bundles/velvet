@@ -28,7 +28,7 @@ abstract class AbstractVelvet(
         ++ ( if (openMP)        Seq("OPENMP=1") else Seq() )
     ) @@ velvet -&-
     Seq("cp", "velvetg", "velveth", "/usr/bin/") @@ velvet ->-
-    success(name + " is installed")
+    success(s"${bundleName} is installed")
   }
 }
 
