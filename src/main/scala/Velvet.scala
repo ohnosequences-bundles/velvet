@@ -1,19 +1,23 @@
-package ohnosequences.statika
+package ohnosequencesBundles.statika
 
 import ohnosequences.statika._, bundles._, instructions._
 
 // Abstract bundle, which compiles velvet with given paraeters
-abstract class AbstractVelvet(
-  categories: Int,
-  maxKmerLength: Int,
-  bigAssembly: Boolean,
-  longSequences: Boolean,
-  openMP: Boolean
-) extends Bundle() {
+abstract class Velvet(
+  val categories: Int,
+  val maxKmerLength: Int,
+  val bigAssembly: Boolean,
+  val longSequences: Boolean,
+  val openMP: Boolean
+) extends Bundle {
+
+  import ammonite.ops._
+  val wd = cwd
+  lazy val folder = wd/"velvet"
 
   def yum(names: String*): Results = Seq("yum", "install", "-y") ++ names
 
-  def install: Results = {
+  final def install: Results = {
 
     val velvet = new java.io.File("velvet")
 
@@ -33,10 +37,12 @@ abstract class AbstractVelvet(
 }
 
 // bundle with default parameters
-case object DefaultVelvet extends AbstractVelvet(
+case object DefaultVelvet extends Velvet(
   categories = 2,
-  maxKmerLength = 31,
+  maxKmerLength = 99,
   bigAssembly = false,
   longSequences = false,
   openMP = false
 )
+
+
