@@ -37,12 +37,6 @@ abstract class Velvet(
 }
 
 // bundle with default parameters
-case object DefaultVelvet extends Velvet(
-  categories = 2,
-  maxKmerLength = 99,
-  bigAssembly = false,
-  longSequences = false,
-  openMP = false
-)
+
 
 
