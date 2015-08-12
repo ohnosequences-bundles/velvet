@@ -21,8 +21,6 @@ abstract class Velvet(
 
   final def install: Results = {
 
-    val velvet = new File("velvet")
-
     Seq("wget", s"http://s3-eu-west-1.amazonaws.com/resources.ohnosequences.com/velvet/${version}/velvet_${version}.tgz") ->-
     Seq("tar", "-xvf", s"velvet_${version}.tgz" ) ->- {
       val velvetDir: String = new File(s"velvet_${version}").getAbsolutePath.toString
@@ -34,8 +32,8 @@ abstract class Velvet(
         ) ++ ( if (bigAssembly)   Seq("BIGASSEMBLY=1") else Seq() )
           ++ ( if (longSequences) Seq("LONGSEQUENCES=1") else Seq() )
           ++ ( if (openMP)        Seq("OPENMP=1") else Seq() )
-      ) @@ velvet -&-
-      Seq("cp", s"${velvetDir}/velvetg", s"${velvetDir}/velveth", "/usr/bin/") @@ velvet
+      )  -&-
+      Seq("cp", s"${velvetDir}/velvetg", s"${velvetDir}/velveth", "/usr/bin/")
     } ->-
     success(s"${bundleName} is installed")
   }
