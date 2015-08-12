@@ -15,6 +15,5 @@ libraryDependencies ++= Seq(
 	"ohnosequences"          %% "statika"               % "2.0.0-SNAPSHOT",
   "ohnosequencesBundles"   %% "cdevel"                % "0.1.0-SNAPSHOT",
   "ohnosequencesBundles"   %% "compressinglibs"       % "0.1.0-SNAPSHOT",
-	"com.lihaoyi"            %% "ammonite-ops"          % "0.2.7",
   "org.scalatest"          %% "scalatest"             % "2.2.4"           % Test
 )

@@ -13,9 +13,7 @@ abstract class Velvet(
   val version: String
 ) extends Bundle (cdevel, compressinglibs) {
 
-  import ammonite.ops._
-  val wd = cwd
-  lazy val folder = wd/"velvet"
+
 
   def yum(names: String*): Results = Seq("yum", "install", "-y") ++ names
 
