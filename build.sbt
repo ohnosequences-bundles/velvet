@@ -15,5 +15,7 @@ libraryDependencies ++= Seq(
 	"ohnosequences"          %% "statika"               % "2.0.0-SNAPSHOT",
   "ohnosequencesBundles"   %% "cdevel"                % "0.1.0-SNAPSHOT",
   "ohnosequencesBundles"   %% "compressinglibs"       % "0.1.0",
-  "org.scalatest"          %% "scalatest"             % "2.2.4"           % Test
+  "org.scalatest"          %% "scalatest"             % "2.2.5"           % Test
 )
+
+dependencyOverrides += "org.scala-lang.modules" %% "scala-xml" % "1.0.4"
