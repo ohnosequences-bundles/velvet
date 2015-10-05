@@ -11,28 +11,37 @@ abstract class Velvet(
   val longSequences: Boolean,
   val openMP: Boolean,
   val version: String
-) extends Bundle (cdevel, compressinglibs) {
+) extends Bundle (cdevel, compressinglibs) { velvet =>
 
+  val name: String = "velvet_" + version
+  val tgz: String = velvet.name + ".tgz"
 
+  lazy val downloadVelvet: CmdInstructions = cmd("wget")(
+    s"http://s3-eu-west-1.amazonaws.com/resources.ohnosequences.com/velvet/${version}/${velvet.tgz}"
+  )
 
-  def yum(names: String*): Results = Seq("yum", "install", "-y") ++ names
+  lazy val untarVelvet: CmdInstructions = cmd("tar")("-xvzf", velvet.tgz)
 
-  final def install: Results = {
+  lazy val make: CmdInstructions = {
+    val options = Seq(
+      "-C", velvet.name,
+      "-W", "doc", // no docs, please
+      "-W", "Manual.pdf",
+      s"CATEGORIES=${categories}",
+      s"MAXKMERLENGTH=${maxKmerLength}"
+    ) ++
+    ( if (bigAssembly) Seq("BIGASSEMBLY=1") else Seq() ) ++
+    ( if (longSequences) Seq("LONGSEQUENCES=1") else Seq() ) ++
+    ( if (openMP) Seq("OPENMP=1") else Seq() )
 
-    Seq("wget", s"http://s3-eu-west-1.amazonaws.com/resources.ohnosequences.com/velvet/${version}/velvet_${version}.tgz") ->-
-    Seq("tar", "-xvf", s"velvet_${version}.tgz" ) ->- {
-      val velvetDir: String = new File(s"velvet_${version}").getAbsolutePath.toString
-      println(velvetDir)
-      (Seq("make", "-C", velvetDir, "-W", "doc", "-W", "Manual.pdf" // no docs, please
-        // setting up make parameters:
-        , "CATEGORIES="+categories+""
-        , "MAXKMERLENGTH="+maxKmerLength+""
-        ) ++ ( if (bigAssembly)   Seq("BIGASSEMBLY=1") else Seq() )
-          ++ ( if (longSequences) Seq("LONGSEQUENCES=1") else Seq() )
-          ++ ( if (openMP)        Seq("OPENMP=1") else Seq() )
-      )  -&-
-      Seq("cp", s"${velvetDir}/velvetg", s"${velvetDir}/velveth", "/usr/bin/")
-    } ->-
-    success(s"${bundleName} is installed")
+    cmd("make")(options: _*)
   }
+
+  def link(binary: String) = cmd("ln")("-s",
+    new File(velvet.name, binary).getCanonicalPath,
+    s"/usr/bin/${binary}"
+  )
+
+  def instructions: AnyInstructions =
+    downloadVelvet -&- untarVelvet -&- make -&- link("velvetg") -&- link("velveth")
 }
