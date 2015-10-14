@@ -2,7 +2,7 @@ package ohnosequences.statika.tests
 
 class VelvetTests extends org.scalatest.FunSuite {
 
-  test("local velvet install") {
+  ignore("local velvet install") {
 
     val version = "1.2.10"
 

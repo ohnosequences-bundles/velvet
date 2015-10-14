@@ -1,1 +1,1 @@
-Upgraded to Statika `2.0.0-M3`
+Upgraded to Statika `2.0.0-M4`.
