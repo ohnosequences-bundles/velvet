@@ -53,5 +53,6 @@ abstract class Velvet(
 
 
 
+[main/scala/MetaVelvet.scala]: MetaVelvet.scala.md
 [main/scala/Velvet.scala]: Velvet.scala.md
 [test/scala/velvetLocal.scala]: ../../test/scala/velvetLocal.scala.md

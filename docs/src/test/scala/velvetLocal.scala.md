@@ -36,5 +36,6 @@ class VelvetTests extends org.scalatest.FunSuite {
 
 
 
+[main/scala/MetaVelvet.scala]: ../../main/scala/MetaVelvet.scala.md
 [main/scala/Velvet.scala]: ../../main/scala/Velvet.scala.md
 [test/scala/velvetLocal.scala]: velvetLocal.scala.md
