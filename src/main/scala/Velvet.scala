@@ -10,7 +10,8 @@ abstract class Velvet(
   val bigAssembly: Boolean,
   val longSequences: Boolean,
   val openMP: Boolean,
-  val version: String
+  val version: String,
+  val cdevel : Cdevel
 ) extends Bundle (cdevel, compressinglibs) { velvet =>
 
   val name: String = "velvet_" + version
