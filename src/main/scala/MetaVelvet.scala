@@ -6,8 +6,7 @@ import java.io.File
 abstract class MetaVelvet(
   val version: String,
   val maxKmerLength: Int,
-  val categories: Int,
-  val cdevel : Cdevel
+  val categories: Int
 )(velvet: Velvet) extends Bundle(cdevel, compressinglibs, velvet) { metaVelvet =>
 
   val name: String = "MetaVelvet-" + version
