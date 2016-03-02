@@ -2,7 +2,7 @@
 ```scala
 package ohnosequencesBundles.statika
 
-import ohnosequences.statika._, bundles._, instructions._
+import ohnosequences.statika._
 import java.io.File
 
 // Abstract bundle, which compiles velvet with given paraeters
@@ -53,6 +53,6 @@ abstract class Velvet(
 
 
 
-[main/scala/MetaVelvet.scala]: MetaVelvet.scala.md
-[main/scala/Velvet.scala]: Velvet.scala.md
 [test/scala/velvetLocal.scala]: ../../test/scala/velvetLocal.scala.md
+[main/scala/Velvet.scala]: Velvet.scala.md
+[main/scala/MetaVelvet.scala]: MetaVelvet.scala.md
